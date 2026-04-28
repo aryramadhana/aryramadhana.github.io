@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { use3DParallax } from '@/hooks/use3DParallax'
-
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import heroImage from './fotoweb.png';
 /**
  * HeroSection
  *
@@ -25,12 +26,17 @@ function HeroSection() {
 
   use3DParallax({ heroRef, sceneRef, blobRef, charRef, glowRef, shadowRef, tag1Ref, tag2Ref, tag3Ref })
 
+  // const socials = [
+  //   // { emoji: '📷', title: 'Instagram', href: '#' },
+  //   { emoji: '🐙', title: 'GitHub',    href: '#' },
+  //   { emoji: '💼', title: 'LinkedIn',  href: '#' },
+  //   // { emoji: '▶',  title: 'YouTube',   href: '#' },
+  // ]
+
   const socials = [
-    { emoji: '📷', title: 'Instagram', href: '#' },
-    { emoji: '🐙', title: 'GitHub',    href: '#' },
-    { emoji: '💼', title: 'LinkedIn',  href: '#' },
-    { emoji: '▶',  title: 'YouTube',   href: '#' },
-  ]
+  { icon: <FaGithub />, title: 'GitHub', href: 'https://github.com/aryramadhana' },
+  { icon: <FaLinkedin />, title: 'LinkedIn', href: 'https://www.linkedin.com/in/hary-ramadhana-n/' },
+];
 
   return (
     <section
@@ -62,14 +68,19 @@ function HeroSection() {
       <div>
         {/* Social Icons */}
         <div className="hero-socials fade-up" style={{ display:'flex', gap:'10px', marginBottom:'20px' }}>
-          {socials.map(({ emoji, title, href }) => (
+          {socials.map(({ icon, title, href }) => (
             <a
-              key={title} href={href} title={title}
+              key={title} 
+              href={href} 
+              title={title}
+              target="_blank" // Tambahan: agar link terbuka di tab baru (opsional)
+              rel="noopener noreferrer" // Praktik keamanan yang baik untuk target="_blank"
               style={{
                 width:'36px', height:'36px', borderRadius:'10px',
                 background:'var(--white)', border:'1px solid var(--gray-ll)',
                 display:'flex', alignItems:'center', justifyContent:'center',
-                fontSize:'14px', cursor:'pointer', textDecoration:'none',
+                fontSize:'18px', // Sedikit diperbesar dari 14px agar logo SVG/React Icon terlihat lebih jelas
+                cursor:'pointer', textDecoration:'none',
                 color:'var(--dark)', transition:'all .2s',
               }}
               onMouseEnter={e => {
@@ -83,7 +94,7 @@ function HeroSection() {
                 e.currentTarget.style.transform = 'none'
               }}
             >
-              {emoji}
+              {icon}
             </a>
           ))}
         </div>
@@ -106,18 +117,18 @@ function HeroSection() {
           className="hero-desc fade-up d2"
           style={{ fontSize:'15px', color:'var(--gray)', lineHeight:1.8, maxWidth:'440px', marginBottom:'32px' }}
         >
-          I build pipelines, model data warehouses, and turn raw data into decisions that move businesses forward. 5+ years, 40+ projects.
+          I build pipelines, analysis, and turn raw data into decisions that move businesses forward. 2+ years, 10+ projects.
         </p>
 
         {/* CTA Buttons */}
         <div className="hero-actions fade-up d3" style={{ display:'flex', gap:'14px', alignItems:'center', flexWrap:'wrap' }}>
           <button className="btn-prim">⬇ Download CV</button>
           <button
-            className="btn-outline"
-            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior:'smooth' })}
-          >
-            ✉ Contact Me
-          </button>
+  className="btn-outline"
+  onClick={() => window.location.href = 'mailto:haryrnasution@gmail.com'}
+>
+  ✉ Contact Me
+</button>
         </div>
       </div>
 
@@ -178,19 +189,24 @@ function HeroSection() {
                 willChange:'transform',
               }}
             >
-              <span
-                id="hero-char"
-                ref={charRef}
-                style={{
-                  fontSize:'120px', display:'block', position:'relative',
-                  transition:'transform 0.08s ease-out, filter 0.1s ease',
-                  willChange:'transform',
-                  filter:'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
-                  userSelect:'none', cursor:'pointer',
-                }}
-              >
-                🧑‍💻
-              </span>
+              <img
+  id="hero-char"
+  ref={charRef}
+  src={heroImage}
+  alt="Hero Character"
+  style={{
+    width: '500px', // Menggantikan fontSize agar ukurannya tetap sama
+    height: '500px', // Bisa diganti 'auto' jika proporsi gambar bukan persegi
+    objectFit: 'contain', // Menjaga gambar agar tidak gepeng
+    display: 'block', 
+    position: 'relative',
+    transition: 'transform 0.08s ease-out, filter 0.1s ease',
+    willChange: 'transform',
+    filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
+    userSelect: 'none', 
+    cursor: 'pointer',
+  }}
+/>
             </div>
 
             {/* 3D Floor Shadow */}
