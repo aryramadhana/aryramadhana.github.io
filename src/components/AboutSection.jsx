@@ -6,16 +6,15 @@
  */
 
 const STATS = [
-  { num: '5+',  label: 'Years Experience' },
-  { num: '40+', label: 'Projects Delivered' },
-  { num: '12',  label: 'Industries Served' },
-  { num: '98%', label: 'Client Satisfaction' },
+  { num: '2+', label: 'Years Experience' },
+  { num: '15+', label: 'Projects' },
+  { num: '300+', label: 'Mentoring Participants' },
+  { num: '10+', label: 'Clients' },
 ]
 
 const SKILLS = [
-  'Python', 'SQL', 'Apache Spark', 'Kafka', 'dbt', 'Airflow',
-  'Snowflake', 'BigQuery', 'Redshift', 'Tableau', 'Looker',
-  'GCP', 'AWS', 'Docker', 'Terraform', 'Git',
+  'Microsoft Excel', 'Spreadsheet', 'Python', 'SQL', 'Apache Spark', 'BigQuery', 'Tableau', 'Data Studio',
+  'GCP', 'Git',
 ]
 
 function AboutSection() {
@@ -82,20 +81,21 @@ function AboutSection() {
             Building data systems that <em>actually</em> scale.
           </h2>
 
-          <p className="about-body fade-up d2" style={{
+          {/* <p className="about-body fade-up d2" style={{
             fontSize: '14px', color: 'var(--gray)', lineHeight: 1.9, marginBottom: '24px',
           }}>
             I'm a Data Engineer and Analyst based in Jakarta with 5+ years of experience designing
             end-to-end data solutions. From Kafka pipelines to Tableau dashboards, I bridge the gap
             between raw infrastructure and business decisions.
-          </p>
+          </p> */}
 
           <p className="about-body fade-up d3" style={{
             fontSize: '14px', color: 'var(--gray)', lineHeight: 1.9, marginBottom: '24px',
           }}>
-            I've worked across fintech, e-commerce, logistics, and HR — helping teams move from
-            spreadsheets to self-serve analytics platforms. I care about clean data models,
-            observable pipelines, and documentation that future-you will thank present-you for.
+            I'm a Data Engineer and Analyst based in Jakarta specializing in data cleaning,  transformation,  and analysis.
+            Skilled in building interactive dashboards as well as developing automated reporting pipelines.
+            Experienced in analyzing e-commerce and marketing data to generate actionable insights and support data-driven decision making.
+            Additionally, experienced as a mentor in data analytics or AI programs, guiding learners in understanding analytical concepts and practical tools.
           </p>
 
           {/* Skill Chips */}

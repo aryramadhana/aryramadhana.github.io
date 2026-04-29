@@ -8,8 +8,8 @@
  * @param {Function} onOpen - callback to open modal with this project
  */
 function ProjectCard({ project, onOpen }) {
-  const { emoji, bg, category, title, desc, toolsLabel } = project
-  const visibleTools  = toolsLabel.slice(0, 3)
+  const { image, bg, category, title, desc, toolsLabel } = project
+  const visibleTools = toolsLabel.slice(0, 3)
   const remainingCount = toolsLabel.length - 3
 
   return (
@@ -37,7 +37,11 @@ function ProjectCard({ project, onOpen }) {
         height: '160px', display: 'flex', alignItems: 'center',
         justifyContent: 'center', fontSize: '48px', background: bg,
       }}>
-        {emoji}
+        <img src={project.image} style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover', // Membuat gambar memenuhi kotak tanpa merusak proporsi (tidak gepeng)
+        }} alt="" />
       </div>
 
       {/* Body */}

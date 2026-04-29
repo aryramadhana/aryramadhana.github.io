@@ -47,9 +47,9 @@ function ContactSection() {
 
           <div className="contact-info fade-up d3" style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '28px' }}>
             {[
-              { icon: '📧', label: 'Email',    value: 'haryrnasution@gmail.com' },
+              { icon: '📧', label: 'Email', value: 'haryrnasution@gmail.com' },
               { icon: '📍', label: 'Location', value: 'Jakarta, Indonesia' },
-              { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/reza-data' },
+              { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/hary-ramadhana-n' },
             ].map(({ icon, label, value }) => (
               <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div style={{
@@ -79,8 +79,8 @@ function ContactSection() {
           padding: '40px', boxShadow: 'var(--shadow-lg)',
         }}>
           <form onSubmit={handleSubmit}> */}
-            {/* Name Row */}
-            {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
+        {/* Name Row */}
+        {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
               <FormGroup label="First Name">
                 <input
                   className="form-inp"
@@ -92,8 +92,8 @@ function ContactSection() {
                   onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
                   onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
                 /> */}
-              {/* </FormGroup> */}
-              {/* <FormGroup label="Last Name">
+        {/* </FormGroup> */}
+        {/* <FormGroup label="Last Name">
                 <input
                   name="lastName"
                   placeholder="Pratama"
@@ -106,7 +106,7 @@ function ContactSection() {
               </FormGroup>
             </div> */}
 
-            {/* <FormGroup label="Email Address" style={{ marginBottom: '16px' }}>
+        {/* <FormGroup label="Email Address" style={{ marginBottom: '16px' }}>
               <input
                 type="email" name="email"
                 placeholder="you@email.com"
@@ -118,7 +118,7 @@ function ContactSection() {
               />
             </FormGroup> */}
 
-            {/* <FormGroup label="Phone Number" style={{ marginBottom: '16px' }}>
+        {/* <FormGroup label="Phone Number" style={{ marginBottom: '16px' }}>
               <input
                 type="tel" name="phone"
                 placeholder="+62 812 ..."
@@ -142,7 +142,7 @@ function ContactSection() {
               />
             </FormGroup> */}
 
-            {/* <button
+        {/* <button
               type="submit"
               style={{
                 width: '100%', fontSize: '13px', fontWeight: 700, color: '#fff',
@@ -153,8 +153,8 @@ function ContactSection() {
               }}
             >
               {submitted ? '✓ Message Sent!' : 'Send Message ✦'} */}
-            {/* </button> */}
-          {/* </form>
+        {/* </button> */}
+        {/* </form>
         </div> */}
       </div>
     </section>

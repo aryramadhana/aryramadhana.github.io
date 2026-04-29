@@ -72,11 +72,23 @@ function ProjectModal({ project, onClose }) {
           <>
             {/* Thumbnail */}
             <div style={{
-              height: '200px', borderRadius: 'var(--radius-sm)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '72px', background: project.bg, marginBottom: '24px',
+              height: '200px',
+              borderRadius: 'var(--radius-sm)',
+              background: project.bg,
+              marginBottom: '24px',
+              overflow: 'hidden', // Penting: agar ujung gambar ikut melengkung sesuai border-radius container
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}>
-              {project.emoji}
+              <img
+                src={project.image}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover', // Membuat gambar memenuhi kotak tanpa merusak proporsi (tidak gepeng)
+                }}
+              />
             </div>
 
             {/* Category */}
@@ -140,12 +152,14 @@ function ProjectModal({ project, onClose }) {
 
             {/* Actions */}
             <div style={{ display: 'flex', gap: '12px', marginTop: '28px' }}>
-              <button className="btn-prim" style={{ fontSize: '12px', padding: '11px 22px' }}>
-                🔗 View Live
-              </button>
-              <button className="btn-outline" style={{ fontSize: '12px', padding: '10px 20px' }}>
+              <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="btn-prim" style={{ fontSize: '12px', padding: '11px 22px' }}>
+                  🔗 View Project
+                </button>
+              </a>
+              {/* <button className="btn-outline" style={{ fontSize: '12px', padding: '10px 20px' }}>
                 ⬡ GitHub
-              </button>
+              </button> */}
             </div>
           </>
         )}

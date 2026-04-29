@@ -5,10 +5,10 @@
  */
 function Footer() {
   const links = [
-    { label: 'GitHub',   href: '#' },
+    { label: 'GitHub', href: '#' },
     { label: 'LinkedIn', href: '#' },
-    { label: 'Twitter',  href: '#' },
-    { label: 'Medium',   href: '#' },
+    { label: 'Twitter', href: '#' },
+    { label: 'Medium', href: '#' },
   ]
 
   return (
@@ -23,16 +23,16 @@ function Footer() {
     }}>
       {/* Brand */}
       <div style={{ fontFamily: 'Fraunces, serif', fontSize: '20px', fontWeight: 900, color: '#fff' }}>
-        reza<span style={{ color: 'var(--green)' }}>.</span>
+        hary<span style={{ color: 'var(--green)' }}>.</span>
       </div>
 
       {/* Copyright */}
       <div style={{ fontSize: '12px', color: 'var(--gray-l)' }}>
-        © 2025 — Data Engineer & Analyst · Jakarta, ID
+        © 2025 — HaryRNasution · Jakarta, ID
       </div>
 
       {/* Links */}
-      <div style={{ display: 'flex', gap: '20px' }}>
+      {/* <div style={{ display: 'flex', gap: '20px' }}>
         {links.map(({ label, href }) => (
           <a
             key={label}
@@ -44,7 +44,7 @@ function Footer() {
             {label}
           </a>
         ))}
-      </div>
+      </div> */}
     </footer>
   )
 }
