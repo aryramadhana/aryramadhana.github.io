@@ -117,7 +117,7 @@ function HeroSection() {
           className="hero-desc fade-up d2"
           style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, maxWidth: '440px', marginBottom: '32px' }}
         >
-          I build pipelines, analysis, and turn raw data into decisions that move businesses forward. 2+ years, 10+ projects.
+          I build pipelines, analysis, and turn raw data into decisions that move businesses forward. 2+ years, 15+ projects.
         </p>
 
         {/* CTA Buttons */}

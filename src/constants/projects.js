@@ -8,11 +8,11 @@ export const PROJECTS = [
   {
     id: 1,
     title: 'SAMBA E-Commerce CEO Dashboard',
-    category: 'analytics',
+    category: 'dashboard',
     image: './foto/dashboard2.png',
     bg: '#DCFCE7',
     tools: ['tableau', 'python'],
-    toolsLabel: ['Tableau', 'Python'],
+    toolsLabel: ['tableau', 'python'],
     desc: 'My initial analysis using Tableau as a business intelligence tool occurred during a Data Analyst training bootcamp.',
     fullDesc:
       'This dashboard presents a summary of key performance metrics (KPIs) and operational trends of the SAMBA E-Commerce platform. Cumulatively, the platform facilitated 49,544 orders involving 48,022 customers and 1,771 sellers',
@@ -31,7 +31,7 @@ export const PROJECTS = [
     image: './foto/dashboard3.png',
     bg: '#EDE9FE',
     tools: ['tableau', 'python'],
-    toolsLabel: ['Tableau', 'Python'],
+    toolsLabel: ['tableau', 'python'],
     desc: 'Create Cluster Chun Dashboard for my first competition at Data Science Weekend by Telkomsel',
     fullDesc:
       'Built a full churn prediction system from feature engineering in BigQuery to model training with XGBoost. Predictions are published weekly to Salesforce CRM, enabling targeted retention campaigns. Model retraining is automated via Airflow on a monthly cadence.',
@@ -48,8 +48,8 @@ export const PROJECTS = [
     category: 'dashboard',
     image: './foto/Dashboard1.png',
     bg: '#FEF9C3',
-    tools: ['tableau', 'Python'],
-    toolsLabel: ['Tableau', 'Python'],
+    tools: ['tableau', 'python'],
+    toolsLabel: ['tableau', 'python'],
     desc: 'This dashboard displays a comparative analysis between aquaculture production, with a focus on the Asian continent covering 45 countries as of 2018',
     fullDesc:
       'Developed for riset and personal project dashboard and report about Aquaculture production in Indonesia to get to know opportunity Indonesia in aquaculture industry.',
