@@ -12,7 +12,7 @@ export const PROJECTS = [
     image: './foto/dashboard2.png',
     bg: '#DCFCE7',
     tools: ['tableau', 'python'],
-    toolsLabel: ['tableau', 'python'],
+    toolsLabel: ['Tableau', 'Python'],
     desc: 'My initial analysis using Tableau as a business intelligence tool occurred during a Data Analyst training bootcamp.',
     fullDesc:
       'This dashboard presents a summary of key performance metrics (KPIs) and operational trends of the SAMBA E-Commerce platform. Cumulatively, the platform facilitated 49,544 orders involving 48,022 customers and 1,771 sellers',
@@ -31,7 +31,7 @@ export const PROJECTS = [
     image: './foto/dashboard3.png',
     bg: '#EDE9FE',
     tools: ['tableau', 'python'],
-    toolsLabel: ['tableau', 'python'],
+    toolsLabel: ['Tableau', 'Python'],
     desc: 'Create Cluster Chun Dashboard for my first competition at Data Science Weekend by Telkomsel',
     fullDesc:
       'Built a full churn prediction system from feature engineering in BigQuery to model training with XGBoost. Predictions are published weekly to Salesforce CRM, enabling targeted retention campaigns. Model retraining is automated via Airflow on a monthly cadence.',
@@ -49,7 +49,7 @@ export const PROJECTS = [
     image: './foto/Dashboard1.png',
     bg: '#FEF9C3',
     tools: ['tableau', 'python'],
-    toolsLabel: ['tableau', 'python'],
+    toolsLabel: ['Tableau', 'Python'],
     desc: 'This dashboard displays a comparative analysis between aquaculture production, with a focus on the Asian continent covering 45 countries as of 2018',
     fullDesc:
       'Developed for riset and personal project dashboard and report about Aquaculture production in Indonesia to get to know opportunity Indonesia in aquaculture industry.',
@@ -61,24 +61,24 @@ export const PROJECTS = [
     ],
     link: 'https://public.tableau.com/views/AquaculturevsCaptureFish/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link',
   },
-  // {
-  //   id: 4,
-  //   title: 'Data Lakehouse Migration',
-  //   category: 'pipeline',
-  //   image: '🏗️',
-  //   bg: '#DCFCE7',
-  //   tools: ['spark', 'python', 'sql', 'dbt'],
-  //   toolsLabel: ['Apache Spark', 'Delta Lake', 'Python', 'dbt', 'Terraform', 'GCP'],
-  //   desc: 'Migrated legacy on-prem warehouse to a modern GCP-based lakehouse architecture for a fintech client.',
-  //   fullDesc:
-  //     'Led a 6-month migration project moving 5TB of legacy Oracle data to a Delta Lake on GCP. Built migration scripts, validation frameworks, and new dbt models. Zero data loss achieved with full audit trail.',
-  //   highlights: [
-  //     '5TB data migrated with zero data loss',
-  //     '60% reduction in query costs post-migration',
-  //     'Full data lineage and audit trail implemented',
-  //     'Completed 2 weeks ahead of schedule',
-  //   ],
-  // },
+  {
+    id: 4,
+    title: 'Churn Bank Customer',
+    category: 'analytics',
+    image: './foto/dashboard4.png',
+    bg: '#DCFCE7',
+    tools: ['python', 'tableau', 'excel'],
+    toolsLabel: ['Python', 'Tableau', 'Excel'],
+    desc: 'Conduct a thorough analysis of customer churn at a bank, taking an end-to-end approach to uncover insights and develop effective strategies.',
+    fullDesc:
+      'In this project, we will accurately identify the number of customer churns, develop distinct clusters, and confidently recommend targeted improvements for each cluster.',
+    highlights: [
+      'Analytical Thinking',
+      'Clustering',
+      'Suggest by Cluster Customers',
+    ],
+    link: 'https://drive.google.com/file/d/1xsjxf06yub6JPjtXz6fclhG2fZ-2v2aI/view?usp=sharing'
+  },
   // {
   //   id: 5,
   //   title: 'Marketing Attribution Model',
