@@ -79,24 +79,24 @@ export const PROJECTS = [
     ],
     link: 'https://drive.google.com/file/d/1xsjxf06yub6JPjtXz6fclhG2fZ-2v2aI/view?usp=sharing'
   },
-  // {
-  //   id: 5,
-  //   title: 'Marketing Attribution Model',
-  //   category: 'analytics',
-  //   image: '📈',
-  //   bg: '#FEE2E2',
-  //   tools: ['python', 'sql'],
-  //   toolsLabel: ['Python', 'SQL', 'BigQuery', 'Looker', 'Pandas'],
-  //   desc: 'Multi-touch attribution model assigning revenue credit across 15 marketing channels for a D2C brand.',
-  //   fullDesc:
-  //     'Built a data-driven multi-touch attribution model using Markov chains. Integrated 15 marketing channels including paid search, organic, email, and social. Results exposed via Looker dashboards for the marketing team.',
-  //   highlights: [
-  //     '15 marketing channels modeled',
-  //     'Reallocated $200K budget based on insights',
-  //     'Increased ROAS by 23% in first quarter',
-  //     'Weekly automated reporting to Slack',
-  //   ],
-  // },
+  {
+    id: 5,
+    title: 'Mini Project Pyspark',
+    category: 'pipeline',
+    image: './foto/pipeline1.png',
+    bg: '#FEE2E2',
+    tools: ['python', 'pyspark'],
+    toolsLabel: ['Python', 'Pyspark'],
+    desc: 'I will develop and implement robust modular ETL (Extract, Transform, Load) concepts using PySpark.',
+    fullDesc:
+      'This project implements a robust ETL pipeline using PySpark, designed for large transaction datasets. It efficiently cleanses and transforms data, storing it in parquet format for analytics.',
+    highlights: [
+      '2,000,000 rows of transactions',
+      '10,000 rows of customers',
+      'The local machine`s time is exactly two minutes fast.',
+      'The data is stored in Parquet format and organized into year and month partitions',
+    ],
+  },
   // {
   //   id: 6,
   //   title: 'HR Analytics Platform',
