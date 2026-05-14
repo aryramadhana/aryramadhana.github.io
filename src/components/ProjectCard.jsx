@@ -14,7 +14,7 @@ function ProjectCard({ project, onOpen }) {
 
   return (
     <div
-      className="proj-card fade-up"
+      className="proj-card"
       onClick={() => onOpen(project)}
       style={{
         background: 'var(--white)', borderRadius: 'var(--radius)',

@@ -10,15 +10,25 @@ import { PROJECTS, CATEGORIES, TOOLS } from '@/constants/projects'
  * Manages filter state and modal open/close state.
  */
 function ProjectsSection() {
-  const [activeCat,  setActiveCat]  = useState('all')
+  const [activeCat, setActiveCat] = useState('all')
   const [activeTool, setActiveTool] = useState('all')
   const [openProject, setOpenProject] = useState(null)
 
   const filtered = PROJECTS.filter(p => {
-    const catOk  = activeCat  === 'all' || p.category === activeCat
-    const toolOk = activeTool === 'all' || p.tools.includes(activeTool)
+    const catOk = activeCat === 'all' || p.category.toLowerCase() === activeCat.toLowerCase()
+    const toolOk = activeTool === 'all' || p.tools.map(t => t.toLowerCase()).includes(activeTool.toLowerCase())
     return catOk && toolOk
   })
+
+  function handleCatChange(cat) {
+    setActiveCat(cat)
+    setActiveTool('all')
+  }
+
+  function handleToolChange(tool) {
+    setActiveTool(tool)
+    setActiveCat('all')
+  }
 
   return (
     <section id="projects" className="section projects" style={{ background: 'var(--gray-lll)' }}>
@@ -33,7 +43,7 @@ function ProjectsSection() {
             <FilterBtn
               key={cat}
               active={activeCat === cat}
-              onClick={() => setActiveCat(cat)}
+              onClick={() => handleCatChange(cat)}
             >
               {cat === 'all' ? 'All' : cat.charAt(0).toUpperCase() + cat.slice(1)}
             </FilterBtn>
@@ -46,7 +56,7 @@ function ProjectsSection() {
             <FilterBtn
               key={tool}
               active={activeTool === tool}
-              onClick={() => setActiveTool(tool)}
+              onClick={() => handleToolChange(tool)}
             >
               {tool === 'all' ? 'All' : tool}
             </FilterBtn>

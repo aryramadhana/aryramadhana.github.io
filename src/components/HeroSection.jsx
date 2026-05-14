@@ -122,7 +122,7 @@ function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="hero-actions fade-up d3" style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button className="btn-prim">⬇ Download CV</button>
+          {/* <button className="btn-prim">⬇ Download CV</button> */}
           <button
             className="btn-outline"
             onClick={() => window.location.href = 'mailto:haryrnasution@gmail.com'}

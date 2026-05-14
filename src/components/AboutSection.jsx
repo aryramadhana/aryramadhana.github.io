@@ -14,7 +14,7 @@ const STATS = [
 
 const SKILLS = [
   'Microsoft Excel', 'Spreadsheet', 'Python', 'SQL', 'Apache Spark', 'BigQuery', 'Tableau', 'Data Studio',
-  'GCP', 'Git',
+  'PostgreeSQL', 'Git',
 ]
 
 function AboutSection() {
