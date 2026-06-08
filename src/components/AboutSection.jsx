@@ -22,7 +22,9 @@ function AboutSection() {
     <section id="about" className="section about" style={{ background: 'var(--white)' }}>
       <div
         className="about-inner"
-        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}
+        style={{
+          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
+        }}
       >
         {/* ── Visual / Stats ── */}
         <div style={{ position: 'relative' }}>
@@ -125,6 +127,34 @@ function AboutSection() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .about-inner {
+            grid-template-columns: 1fr;
+            gap: 50px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .about-inner {
+            gap: 40px;
+          }
+          .skill-chips {
+            gap: 10px;
+          }
+          .skill-chips span {
+            font-size: 10px;
+            padding: 5px 12px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .about-inner {
+            gap: 30px;
+          }
+        }
+      `}</style>
     </section>
   )
 }

@@ -65,10 +65,17 @@ function ProjectsSection() {
       </div>
 
       {/* ── Project Grid ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px' }}>
+      <div 
+        style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '20px' 
+        }} 
+        className="projects-grid"
+      >
         {filtered.length === 0 ? (
           <div style={{
-            gridColumn: 'span 3', textAlign: 'center',
+            gridColumn: '1 / -1', textAlign: 'center',
             padding: '60px', color: 'var(--gray)',
           }}>
             No projects match these filters.
@@ -97,12 +104,12 @@ function ProjectsSection() {
 
 function FilterRow({ label, children }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }} className="filter-row">
       <span style={{
         fontFamily: 'Fira Code, monospace', fontSize: '10px',
         letterSpacing: '0.15em', textTransform: 'uppercase',
         color: 'var(--gray-l)', minWidth: '72px',
-      }}>
+      }} className="filter-label">
         {label}
       </span>
       {children}
@@ -121,7 +128,9 @@ function FilterBtn({ active, onClick, children }) {
         background: active ? 'var(--green)' : 'var(--white)',
         color: active ? '#fff' : 'var(--gray)',
         cursor: 'pointer', transition: 'all .2s',
+        whiteSpace: 'nowrap',
       }}
+      className="filter-btn"
     >
       {children}
     </button>
