@@ -45,7 +45,7 @@ function ProjectModal({ project, onClose }) {
         transform: isOpen ? 'scale(1) translateY(0)' : 'scale(0.9) translateY(20px)',
         transition: 'transform .3s',
         boxShadow: '0 32px 80px rgba(0,0,0,0.2)',
-      }}>
+      }} className="project-modal">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -56,6 +56,7 @@ function ProjectModal({ project, onClose }) {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: '18px', color: 'var(--gray)', transition: 'all .2s',
           }}
+          className="close-modal-btn"
           onMouseEnter={e => {
             e.currentTarget.style.background = 'var(--green)'
             e.currentTarget.style.color = '#fff'
@@ -163,6 +164,41 @@ function ProjectModal({ project, onClose }) {
             </div>
           </>
         )}
+
+        <style>{`
+          @media (max-width: 768px) {
+            .project-modal {
+              padding: 32px 24px !important;
+            }
+            .project-modal > div:nth-child(2) {
+              height: 160px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .project-modal {
+              padding: 24px 16px !important;
+              width: 90vw !important;
+              max-height: 90vh !important;
+              border-radius: 12px !important;
+            }
+            .project-modal h3 {
+              font-size: 20px !important;
+            }
+            .project-modal p {
+              font-size: 13px !important;
+            }
+            .project-modal > div:nth-child(2) {
+              height: 140px !important;
+              margin-bottom: 16px !important;
+            }
+            .close-modal-btn {
+              width: 32px !important;
+              height: 32px !important;
+              font-size: 16px !important;
+            }
+          }
+        `}</style>
       </div>
     </div>
   )

@@ -40,7 +40,7 @@ function ProjectCard({ project, onOpen }) {
         <img src={project.image} style={{
           width: '100%',
           height: '100%',
-          objectFit: 'cover', // Membuat gambar memenuhi kotak tanpa merusak proporsi (tidak gepeng)
+          objectFit: 'cover',
         }} alt="" />
       </div>
 
@@ -92,6 +92,15 @@ function ProjectCard({ project, onOpen }) {
           )}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .proj-card {
+            box-shadow: var(--shadow) !important;
+            border-color: transparent !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }
