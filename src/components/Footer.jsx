@@ -20,14 +20,14 @@ function Footer() {
       alignItems: 'center',
       flexWrap: 'wrap',
       gap: '20px',
-    }}>
+    }} className="footer">
       {/* Brand */}
       <div style={{ fontFamily: 'Fraunces, serif', fontSize: '20px', fontWeight: 900, color: '#fff' }}>
         hary<span style={{ color: 'var(--green)' }}>.</span>
       </div>
 
       {/* Copyright */}
-      <div style={{ fontSize: '12px', color: 'var(--gray-l)' }}>
+      <div style={{ fontSize: '12px', color: 'var(--gray-l)' }} className="footer-copy">
         © 2025 — HaryRNasution · Jakarta, ID
       </div>
 
@@ -45,6 +45,27 @@ function Footer() {
           </a>
         ))}
       </div> */}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .footer {
+            padding: 32px 24px;
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+          }
+          .footer-copy {
+            order: 3;
+            width: 100%;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .footer {
+            padding: 24px 16px;
+          }
+        }
+      `}</style>
     </footer>
   )
 }

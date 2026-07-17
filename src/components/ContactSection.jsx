@@ -30,7 +30,7 @@ function ContactSection() {
       className="section contact"
       style={{ background: 'linear-gradient(135deg,var(--green-ll) 0%,var(--white) 100%)' }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }} className="contact-grid">
 
         {/* ── Left: Info ── */}
         <div>
@@ -157,6 +157,34 @@ function ContactSection() {
         {/* </form>
         </div> */}
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 50px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .contact-grid {
+            gap: 40px;
+          }
+          .contact-info {
+            gap: 16px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .contact-grid {
+            gap: 30px;
+          }
+          .contact-info > div {
+            flex-direction: column;
+            gap: 10px;
+          }
+        }
+      `}</style>
     </section>
   )
 }

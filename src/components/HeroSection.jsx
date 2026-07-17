@@ -42,6 +42,7 @@ function HeroSection() {
     <section
       id="home"
       ref={heroRef}
+      className="hero"
       style={{
         minHeight: '100vh', padding: '100px 40px 60px',
         display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px',
@@ -65,7 +66,7 @@ function HeroSection() {
       }} />
 
       {/* ── Left Column ── */}
-      <div>
+      <div style={{ minWidth: 0 }}>
         {/* Social Icons */}
         <div className="hero-socials fade-up" style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
           {socials.map(({ icon, title, href }) => (
@@ -104,7 +105,7 @@ function HeroSection() {
           className="hero-greeting fade-up d1"
           style={{
             fontFamily: 'Fraunces, serif',
-            fontSize: 'clamp(25px,3vw,64px)', fontWeight: 500,
+            fontSize: 'clamp(28px,6vw,64px)', fontWeight: 500,
             lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '16px',
           }}
         >
@@ -121,11 +122,12 @@ function HeroSection() {
         </p>
 
         {/* CTA Buttons */}
-        <div className="hero-actions fade-up d3" style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="hero-actions fade-up d3" style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap', width: '100%' }}>
           {/* <button className="btn-prim">⬇ Download CV</button> */}
           <button
             className="btn-outline"
             onClick={() => window.location.href = 'mailto:haryrnasution@gmail.com'}
+            style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}
           >
             ✉ Contact Me
           </button>
@@ -248,6 +250,84 @@ function HeroSection() {
         @keyframes floatTag {
           0%,100% { transform:translateY(0) }
           50%     { transform:translateY(-8px) }
+        }
+        
+        /* Hero 3D Scene responsive sizing */
+        #hero-scene { 
+          width: 420px !important; 
+          height: 420px !important; 
+        }
+        
+        #hero-avatar { 
+          width: 340px !important; 
+          height: 340px !important; 
+        }
+        
+        #hero-char { 
+          width: 500px !important; 
+          height: 500px !important; 
+        }
+        
+        #hero-shadow { 
+          width: 200px !important; 
+          height: 24px !important; 
+        }
+        
+        @media (max-width: 1024px) {
+          #hero-scene { 
+            width: 300px !important; 
+            height: 300px !important; 
+          }
+          #hero-avatar { 
+            width: 240px !important; 
+            height: 240px !important; 
+          }
+          #hero-char { 
+            width: 350px !important; 
+            height: 350px !important; 
+          }
+          #tag1, #tag2, #tag3 { 
+            display: none !important; 
+          }
+        }
+        
+        @media (max-width: 768px) {
+          #hero-scene { 
+            width: 240px !important; 
+            height: 240px !important; 
+          }
+          #hero-avatar { 
+            width: 190px !important; 
+            height: 190px !important; 
+          }
+          #hero-char { 
+            width: 280px !important; 
+            height: 280px !important; 
+          }
+        }
+        
+        @media (max-width: 480px) {
+          #hero-scene { 
+            width: 200px !important; 
+            height: 200px !important; 
+          }
+          #hero-avatar { 
+            width: 160px !important; 
+            height: 160px !important; 
+          }
+          #hero-char { 
+            width: 230px !important; 
+            height: 230px !important; 
+          }
+          #hero-shadow { 
+            width: 120px !important; 
+          }
+          .hero-greeting { 
+            font-size: clamp(24px, 7vw, 48px) !important; 
+          }
+          .hero-desc { 
+            font-size: 13px !important; 
+          }
         }
       `}</style>
     </section>
