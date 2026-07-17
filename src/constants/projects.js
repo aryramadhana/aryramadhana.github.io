@@ -22,6 +22,26 @@ export const PROJECTS = [
       'The local machine`s time is exactly two minutes fast.',
       'The data is stored in Parquet format and organized into year and month partitions',
     ],
+    link: 'https://github.com/aryramadhana/miniProject_pyspark'
+  },
+  {
+    id: 7,
+    title: 'Modern Data Stack — E-Commerce Data Pipeline',
+    category: 'pipeline',
+    image: '/foto/pipeline2.png',
+    bg: '#FEE2E2',
+    tools: ['python', 'pyspark'],
+    toolsLabel: ['Python', 'Pyspark'],
+    desc: 'This project implements a production-style Modern Data Stack using BigQuery, dbt, and Apache Airflow.',
+    fullDesc:
+      'This pipeline transforms raw e-commerce transaction data into analytics-ready tables, fully automated with daily scheduling, data quality testing, and historical change tracking.',
+    highlights: [
+      'Google BigQuery',
+      'dbt Core',
+      'Apache Airflow',
+      'Docker',
+    ],
+    link: 'https://github.com/aryramadhana/learningDE'
   },
   {
     id: 6,
