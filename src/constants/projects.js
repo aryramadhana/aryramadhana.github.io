@@ -136,25 +136,6 @@ export const PROJECTS = [
     ],
     link: 'https://drive.google.com/file/d/1xsjxf06yub6JPjtXz6fclhG2fZ-2v2aI/view?usp=sharing'
   },
-
-  // {
-  //   id: 6,
-  //   title: 'HR Analytics Platform',
-  //   category: 'dashboard',
-  //   image: '👥',
-  //   bg: '#E0F2FE',
-  //   tools: ['tableau', 'sql', 'python'],
-  //   toolsLabel: ['Python', 'SQL', 'Tableau', 'Postgres', 'dbt'],
-  //   desc: 'Self-serve analytics platform for the HR team covering headcount, attrition, hiring velocity, and DEI metrics.',
-  //   fullDesc:
-  //     'Designed a comprehensive HR analytics platform for a 2,000-person company. Built dimensional models for headcount, attrition, and hiring funnel. Delivered self-serve Tableau dashboards with row-level security by department.',
-  //   highlights: [
-  //     'Row-level security by department and manager',
-  //     'Attrition prediction model integrated',
-  //     'Reduced HR reporting cycle from weekly to daily',
-  //     '98% adoption rate among HR team',
-  //   ],
-  // },
 ]
 
 /** Filter categories derived from PROJECTS */

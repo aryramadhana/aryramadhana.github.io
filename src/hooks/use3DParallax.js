@@ -50,7 +50,8 @@ export function use3DParallax({
 
     // Inject cursor glow div
     const cursorGlow = document.createElement('div')
-    cursorGlow.id = 'cursor-glow'
+    cursorGlow.className =
+      'fixed h-[200px] w-[200px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-[9999] opacity-0 transition-opacity duration-300 ease-out [mix-blend-mode:multiply] [background:radial-gradient(circle,rgba(34,197,94,0.12)_0%,transparent_70%)]'
     document.body.appendChild(cursorGlow)
 
     let mx = 0, my = 0
@@ -133,12 +134,12 @@ export function use3DParallax({
     function onHeroClick(e) {
       for (let i = 0; i < 8; i++) {
         const sp = document.createElement('div')
-        sp.className = 'sparkle'
+        sp.className = 'absolute rounded-full pointer-events-none opacity-0 animate-sparkle'
         const heroRect = hero.getBoundingClientRect()
         sp.style.left = (e.clientX - heroRect.left - 3) + 'px'
         sp.style.top  = (e.clientY - heroRect.top  - 3) + 'px'
         sp.style.animationDelay = (i * 0.08) + 's'
-        sp.style.background = i % 2 === 0 ? 'var(--green)' : '#fff'
+        sp.style.background = i % 2 === 0 ? '#22C55E' : '#fff'
         sp.style.width = sp.style.height = (4 + Math.random() * 6) + 'px'
         hero.appendChild(sp)
         setTimeout(() => sp.remove(), 1600)

@@ -2,105 +2,63 @@
  * ProjectCard
  *
  * Single project card shown in the projects grid.
- * Clicking it opens the ProjectModal with full details.
+ * Clicking (or pressing Enter/Space) it opens the ProjectModal with full details.
  *
  * @param {Object} project - project data object from constants/projects.js
  * @param {Function} onOpen - callback to open modal with this project
  */
 function ProjectCard({ project, onOpen }) {
-  const { image, bg, category, title, desc, toolsLabel } = project
+  const { bg, category, title, desc, toolsLabel } = project
   const visibleTools = toolsLabel.slice(0, 3)
   const remainingCount = toolsLabel.length - 3
 
   return (
     <div
-      className="proj-card"
+      role="button"
+      tabIndex={0}
       onClick={() => onOpen(project)}
-      style={{
-        background: 'var(--white)', borderRadius: 'var(--radius)',
-        overflow: 'hidden', boxShadow: 'var(--shadow)', cursor: 'pointer',
-        transition: 'all .3s', border: '1.5px solid transparent',
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpen(project)
+        }
       }}
-      onMouseEnter={e => {
-        e.currentTarget.style.transform = 'translateY(-6px)'
-        e.currentTarget.style.boxShadow = 'var(--shadow-lg)'
-        e.currentTarget.style.borderColor = 'var(--green)'
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.transform = 'none'
-        e.currentTarget.style.boxShadow = 'var(--shadow)'
-        e.currentTarget.style.borderColor = 'transparent'
-      }}
+      className="cursor-pointer overflow-hidden rounded border-[1.5px] border-transparent bg-white shadow transition-all duration-300 hover:-translate-y-1.5 hover:border-green hover:shadow-lg"
     >
       {/* Thumbnail */}
-      <div style={{
-        height: '160px', display: 'flex', alignItems: 'center',
-        justifyContent: 'center', fontSize: '48px', background: bg,
-      }}>
-        <img src={project.image} style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }} alt="" />
+      <div className="flex h-40 items-center justify-center text-5xl" style={{ background: bg }}>
+        <img src={project.image} alt={title} className="h-full w-full object-cover" />
       </div>
 
       {/* Body */}
-      <div style={{ padding: '20px' }}>
-        <div style={{
-          fontFamily: 'Fira Code, monospace', fontSize: '9px',
-          letterSpacing: '0.15em', textTransform: 'uppercase',
-          color: 'var(--green)', marginBottom: '8px',
-        }}>
+      <div className="p-5">
+        <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.15em] text-green">
           {category}
         </div>
-        <div style={{
-          fontSize: '15px', fontWeight: 700, color: 'var(--dark)',
-          marginBottom: '8px', lineHeight: 1.3,
-        }}>
+        <div className="mb-2 text-[15px] font-bold leading-[1.3] text-dark">
           {title}
         </div>
-        <div style={{
-          fontSize: '12px', color: 'var(--gray)', lineHeight: 1.7, marginBottom: '14px',
-        }}>
+        <div className="mb-3.5 text-xs leading-[1.7] text-gray">
           {desc}
         </div>
 
         {/* Tool Tags */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+        <div className="flex flex-wrap gap-[5px]">
           {visibleTools.map(tool => (
             <span
               key={tool}
-              style={{
-                fontSize: '10px', fontWeight: 500,
-                padding: '3px 9px',
-                background: 'var(--gray-lll)', color: 'var(--gray)',
-                borderRadius: '4px', border: '1px solid var(--gray-ll)',
-              }}
+              className="rounded-[4px] border border-gray-lighter bg-gray-lightest px-[9px] py-[3px] text-[10px] font-medium text-gray"
             >
               {tool}
             </span>
           ))}
           {remainingCount > 0 && (
-            <span style={{
-              fontSize: '10px', fontWeight: 500,
-              padding: '3px 9px',
-              background: 'var(--gray-lll)', color: 'var(--gray)',
-              borderRadius: '4px', border: '1px solid var(--gray-ll)',
-            }}>
+            <span className="rounded-[4px] border border-gray-lighter bg-gray-lightest px-[9px] py-[3px] text-[10px] font-medium text-gray">
               +{remainingCount}
             </span>
           )}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .proj-card {
-            box-shadow: var(--shadow) !important;
-            border-color: transparent !important;
-          }
-        }
-      `}</style>
     </div>
   )
 }

@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div className="min-h-screen">
       <Navbar />
       <main>
         <HeroSection />

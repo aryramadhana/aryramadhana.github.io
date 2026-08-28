@@ -13,6 +13,7 @@ function ProjectsSection() {
   const [activeCat, setActiveCat] = useState('all')
   const [activeTool, setActiveTool] = useState('all')
   const [openProject, setOpenProject] = useState(null)
+  const [triggerEl, setTriggerEl] = useState(null)
 
   const filtered = PROJECTS.filter(p => {
     const catOk = activeCat === 'all' || p.category.toLowerCase() === activeCat.toLowerCase()
@@ -30,13 +31,28 @@ function ProjectsSection() {
     setActiveCat('all')
   }
 
+  function openProjectModal(project, trigger) {
+    setTriggerEl(trigger ?? null)
+    setOpenProject(project)
+  }
+
+  function closeProjectModal() {
+    setOpenProject(null)
+    triggerEl?.focus()
+  }
+
   return (
-    <section id="projects" className="section projects" style={{ background: 'var(--gray-lll)' }}>
-      <div className="section-eyebrow fade-up">Selected Work</div>
-      <h2 className="section-title fade-up d1">Projects that <em>moved the needle.</em></h2>
+    <section
+      id="projects"
+      className="bg-gray-lightest px-4 py-12 xs:px-6 xs:py-[60px] md:px-8 md:py-[70px] lg:px-10 lg:py-[90px]"
+    >
+      <div className="fade-up mb-2.5 font-mono text-[10px] font-light uppercase tracking-[0.2em] text-green md:text-[11px]">Selected Work</div>
+      <h2 className="fade-up d1 mb-4 font-serif text-[clamp(20px,5vw,32px)] font-black leading-[1.1] tracking-[-0.03em] xs:text-[clamp(24px,3vw,36px)] md:text-[clamp(32px,4vw,48px)]">
+        Projects that <em className="italic text-green">moved the needle.</em>
+      </h2>
 
       {/* ── Filter Bar ── */}
-      <div style={{ marginBottom: '36px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div className="mb-9 flex flex-col gap-3">
         {/* Category Filter */}
         <FilterRow label="Category">
           {CATEGORIES.map(cat => (
@@ -65,19 +81,9 @@ function ProjectsSection() {
       </div>
 
       {/* ── Project Grid ── */}
-      <div 
-        style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '20px' 
-        }} 
-        className="projects-grid"
-      >
+      <div className="grid grid-cols-1 gap-[14px] xs:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] xs:gap-4 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] md:gap-[18px] lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:gap-5">
         {filtered.length === 0 ? (
-          <div style={{
-            gridColumn: '1 / -1', textAlign: 'center',
-            padding: '60px', color: 'var(--gray)',
-          }}>
+          <div className="col-span-full py-[60px] text-center text-gray">
             No projects match these filters.
           </div>
         ) : (
@@ -85,17 +91,19 @@ function ProjectsSection() {
             <ProjectCard
               key={project.id}
               project={project}
-              onOpen={setOpenProject}
+              onOpen={(p) => openProjectModal(p, document.activeElement)}
             />
           ))
         )}
       </div>
 
       {/* Modal */}
-      <ProjectModal
-        project={openProject}
-        onClose={() => setOpenProject(null)}
-      />
+      {openProject && (
+        <ProjectModal
+          project={openProject}
+          onClose={closeProjectModal}
+        />
+      )}
     </section>
   )
 }
@@ -104,12 +112,8 @@ function ProjectsSection() {
 
 function FilterRow({ label, children }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }} className="filter-row">
-      <span style={{
-        fontFamily: 'Fira Code, monospace', fontSize: '10px',
-        letterSpacing: '0.15em', textTransform: 'uppercase',
-        color: 'var(--gray-l)', minWidth: '72px',
-      }} className="filter-label">
+    <div className="flex flex-wrap items-center gap-2.5">
+      <span className="min-w-[72px] font-mono text-[10px] uppercase tracking-[0.15em] text-gray-light">
         {label}
       </span>
       {children}
@@ -121,16 +125,12 @@ function FilterBtn({ active, onClick, children }) {
   return (
     <button
       onClick={onClick}
-      style={{
-        fontSize: '12px', fontWeight: 500,
-        padding: '7px 16px', borderRadius: '50px',
-        border: `1.5px solid ${active ? 'var(--green)' : 'var(--gray-ll)'}`,
-        background: active ? 'var(--green)' : 'var(--white)',
-        color: active ? '#fff' : 'var(--gray)',
-        cursor: 'pointer', transition: 'all .2s',
-        whiteSpace: 'nowrap',
-      }}
-      className="filter-btn"
+      aria-pressed={active}
+      className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-[7px] text-xs font-medium transition-all duration-200 ${
+        active
+          ? 'border-green bg-green text-white'
+          : 'border-gray-lighter bg-white text-gray'
+      }`}
     >
       {children}
     </button>

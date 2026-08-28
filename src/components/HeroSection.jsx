@@ -1,17 +1,20 @@
-import { useRef } from 'react'
+import { useRef, forwardRef } from 'react'
 import { use3DParallax } from '@/hooks/use3DParallax'
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-// import heroImage from 'fotoweb.png';
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+
 /**
  * HeroSection
  *
  * Full-viewport hero with:
  * - Social links
  * - Animated heading
- * - CTA buttons
- * - 3D morphing blob with emoji character and parallax floating tags
+ * - CTA button
+ * - 3D morphing blob with character image and parallax floating tags
  *
- * The 3D parallax effect is managed by the use3DParallax hook.
+ * The 3D parallax effect is managed by the use3DParallax hook, which sets
+ * per-frame transform/box-shadow/opacity styles directly on the refs below
+ * (mouse-position-driven) — those stay imperative and are not expressed as
+ * Tailwind classes; only the static base styles are.
  */
 function HeroSection() {
   const heroRef = useRef(null)
@@ -26,74 +29,33 @@ function HeroSection() {
 
   use3DParallax({ heroRef, sceneRef, blobRef, charRef, glowRef, shadowRef, tag1Ref, tag2Ref, tag3Ref })
 
-  // const socials = [
-  //   // { emoji: '📷', title: 'Instagram', href: '#' },
-  //   { emoji: '🐙', title: 'GitHub',    href: '#' },
-  //   { emoji: '💼', title: 'LinkedIn',  href: '#' },
-  //   // { emoji: '▶',  title: 'YouTube',   href: '#' },
-  // ]
-
   const socials = [
     { icon: <FaGithub />, title: 'GitHub', href: 'https://github.com/aryramadhana' },
     { icon: <FaLinkedin />, title: 'LinkedIn', href: 'https://www.linkedin.com/in/hary-ramadhana-n/' },
-  ];
+  ]
 
   return (
     <section
       id="home"
       ref={heroRef}
-      className="hero"
-      style={{
-        minHeight: '100vh', padding: '100px 40px 60px',
-        display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px',
-        alignItems: 'center',
-        background: 'linear-gradient(135deg, var(--green-ll) 0%, var(--white) 60%)',
-        position: 'relative', overflow: 'hidden',
-      }}
+      className="relative grid grid-cols-1 items-center gap-6 overflow-hidden bg-[linear-gradient(135deg,#F0FDF4_0%,#FFFFFF_60%)] px-4 pb-10 pt-[60px] xs:gap-[30px] xs:px-6 xs:pb-[50px] xs:pt-[70px] md:min-h-screen md:gap-10 md:px-8 md:pb-[60px] md:pt-20 lg:grid-cols-2 lg:gap-[60px] lg:px-10 lg:pb-[60px] lg:pt-[100px]"
     >
       {/* Decorative blobs */}
-      <div style={{
-        content: '', position: 'absolute', top: '-120px', right: '-120px',
-        width: '500px', height: '500px', borderRadius: '50%',
-        background: 'radial-gradient(circle,rgba(34,197,94,0.15) 0%,transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-      <div style={{
-        content: '', position: 'absolute', bottom: '-80px', left: '10%',
-        width: '300px', height: '300px', borderRadius: '50%',
-        background: 'radial-gradient(circle,rgba(34,197,94,0.08) 0%,transparent 70%)',
-        pointerEvents: 'none',
-      }} />
+      <div className="pointer-events-none absolute -right-[120px] -top-[120px] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.15)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute -bottom-20 left-[10%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_70%)]" />
 
       {/* ── Left Column ── */}
-      <div style={{ minWidth: 0 }}>
+      <div className="min-w-0">
         {/* Social Icons */}
-        <div className="hero-socials fade-up" style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+        <div className="fade-up mb-5 flex gap-2.5">
           {socials.map(({ icon, title, href }) => (
             <a
               key={title}
               href={href}
               title={title}
-              target="_blank" // Tambahan: agar link terbuka di tab baru (opsional)
-              rel="noopener noreferrer" // Praktik keamanan yang baik untuk target="_blank"
-              style={{
-                width: '36px', height: '36px', borderRadius: '10px',
-                background: 'var(--white)', border: '1px solid var(--gray-ll)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '18px', // Sedikit diperbesar dari 14px agar logo SVG/React Icon terlihat lebih jelas
-                cursor: 'pointer', textDecoration: 'none',
-                color: 'var(--dark)', transition: 'all .2s',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'var(--green)'
-                e.currentTarget.style.color = 'var(--green)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'var(--gray-ll)'
-                e.currentTarget.style.color = 'var(--dark)'
-                e.currentTarget.style.transform = 'none'
-              }}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 items-center justify-center rounded-sm border border-gray-lighter bg-white text-lg text-dark no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-green hover:text-green"
             >
               {icon}
             </a>
@@ -101,33 +63,21 @@ function HeroSection() {
         </div>
 
         {/* Heading */}
-        <h3
-          className="hero-greeting fade-up d1"
-          style={{
-            fontFamily: 'Fraunces, serif',
-            fontSize: 'clamp(28px,6vw,64px)', fontWeight: 500,
-            lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '16px',
-          }}
-        >
-          Hi, I'm <em style={{ color: 'var(--green)', fontStyle: 'italic' }}>Hary</em><br />
+        <h1 className="fade-up d1 mb-4 font-serif text-[clamp(24px,7vw,48px)] font-medium leading-[1.05] tracking-[-0.03em] xs:text-[clamp(28px,6vw,64px)]">
+          Hi, I'm <em className="italic text-green">Hary</em><br />
           Data Engineer & Analyst
-        </h3>
+        </h1>
 
         {/* Description */}
-        <p
-          className="hero-desc fade-up d2"
-          style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, maxWidth: '440px', marginBottom: '32px' }}
-        >
+        <p className="fade-up d2 mb-8 max-w-[440px] text-[13px] leading-[1.8] text-gray xs:text-[15px]">
           I build pipelines, analysis, and turn raw data into decisions that move businesses forward. 2+ years, 15+ projects.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="hero-actions fade-up d3" style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap', width: '100%' }}>
-          {/* <button className="btn-prim">⬇ Download CV</button> */}
+        {/* CTA Button */}
+        <div className="fade-up d3 flex w-full flex-wrap items-center gap-3.5">
           <button
-            className="btn-outline"
             onClick={() => window.location.href = 'mailto:haryrnasution@gmail.com'}
-            style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border-[1.5px] border-gray-lighter bg-transparent px-[18px] py-2.5 text-center text-xs font-semibold text-dark transition-all duration-200 hover:border-green hover:text-green xs:px-5 xs:py-3 md:px-6 md:py-[13px] md:text-[13px]"
           >
             ✉ Contact Me
           </button>
@@ -135,79 +85,36 @@ function HeroSection() {
       </div>
 
       {/* ── Right Column: 3D Scene ── */}
-      <div
-        className="hero-right fade-up d2"
-        style={{
-          position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          perspective: '900px', perspectiveOrigin: 'center center', zIndex: 2,
-        }}
-      >
+      <div className="fade-up d2 relative z-[2] flex items-center justify-center [perspective:900px] [perspective-origin:center_center]">
         <div
           id="hero-scene"
           ref={sceneRef}
-          style={{
-            width: '420px', height: '420px', position: 'relative',
-            transformStyle: 'preserve-3d', transition: 'transform 0.08s ease-out',
-            willChange: 'transform',
-          }}
+          className="relative h-[200px] w-[200px] [transform-style:preserve-3d] [will-change:transform] transition-transform duration-[80ms] ease-out xs:h-[240px] xs:w-[240px] md:h-[300px] md:w-[300px] lg:h-[420px] lg:w-[420px]"
         >
           {/* Morphing Blob */}
           <div
             id="hero-blob"
             ref={blobRef}
-            style={{
-              width: '100%', height: '100%',
-              background: 'linear-gradient(135deg,var(--green-l),var(--green))',
-              borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              animation: 'morphBlob 8s ease-in-out infinite',
-              transformStyle: 'preserve-3d', transition: 'box-shadow 0.15s ease',
-              position: 'relative',
-            }}
+            className="relative flex h-full w-full animate-morphBlob items-center justify-center [background:linear-gradient(135deg,#DCFCE7,#22C55E)] [transform-style:preserve-3d] transition-shadow duration-150 ease-in-out"
           >
             {/* Glow */}
             <div
               id="hero-glow"
               ref={glowRef}
-              style={{
-                position: 'absolute', inset: '-20px', borderRadius: '50%',
-                background: 'radial-gradient(circle at center,rgba(34,197,94,0.35) 0%,transparent 65%)',
-                pointerEvents: 'none',
-                transition: 'opacity 0.2s ease, transform 0.08s ease-out',
-                willChange: 'transform, opacity',
-              }}
+              className="pointer-events-none absolute -inset-5 rounded-full opacity-0 [background:radial-gradient(circle_at_center,rgba(34,197,94,0.35)_0%,transparent_65%)] [will-change:transform,opacity] transition-[opacity,transform] duration-200 ease-out"
             />
 
             {/* Avatar Circle */}
             <div
               id="hero-avatar"
-              style={{
-                width: '340px', height: '340px', borderRadius: '50%',
-                background: 'var(--white)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.1)',
-                position: 'relative', zIndex: 2,
-                transformStyle: 'preserve-3d', transition: 'transform 0.08s ease-out',
-                willChange: 'transform',
-              }}
+              className="relative z-[2] flex h-[160px] w-[160px] items-center justify-center rounded-full bg-white [box-shadow:0_20px_60px_rgba(0,0,0,0.1)] [transform-style:preserve-3d] [will-change:transform] transition-transform duration-[80ms] ease-out xs:h-[190px] xs:w-[190px] md:h-[240px] md:w-[240px] lg:h-[340px] lg:w-[340px]"
             >
               <img
                 id="hero-char"
                 ref={charRef}
                 src="/foto/fotoweb.png"
                 alt="Hero Character"
-                style={{
-                  width: '500px', // Menggantikan fontSize agar ukurannya tetap sama
-                  height: '500px', // Bisa diganti 'auto' jika proporsi gambar bukan persegi
-                  objectFit: 'contain', // Menjaga gambar agar tidak gepeng
-                  display: 'block',
-                  position: 'relative',
-                  transition: 'transform 0.08s ease-out, filter 0.1s ease',
-                  willChange: 'transform',
-                  filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))',
-                  userSelect: 'none',
-                  cursor: 'pointer',
-                }}
+                className="relative block h-[230px] w-[230px] cursor-pointer select-none object-contain [filter:drop-shadow(0_20px_30px_rgba(0,0,0,0.25))] [will-change:transform] transition-[transform,filter] duration-[80ms] ease-out xs:h-[280px] xs:w-[280px] md:h-[350px] md:w-[350px] lg:h-[500px] lg:w-[500px]"
               />
             </div>
 
@@ -215,145 +122,33 @@ function HeroSection() {
             <div
               id="hero-shadow"
               ref={shadowRef}
-              style={{
-                position: 'absolute', bottom: '-20px', left: '50%',
-                transform: 'translateX(-50%)',
-                width: '200px', height: '24px', borderRadius: '50%',
-                background: 'radial-gradient(ellipse,rgba(0,0,0,0.18) 0%,transparent 70%)',
-                transition: 'transform 0.08s ease-out, opacity 0.08s ease-out',
-                willChange: 'transform, opacity', pointerEvents: 'none',
-              }}
+              className="pointer-events-none absolute -bottom-5 left-1/2 h-6 w-[120px] -translate-x-1/2 rounded-full opacity-0 [background:radial-gradient(ellipse,rgba(0,0,0,0.18)_0%,transparent_70%)] [will-change:transform,opacity] transition-[transform,opacity] duration-[80ms] ease-out xs:w-[200px]"
             />
           </div>
 
           {/* Floating Tags */}
-          <FloatingTag ref={tag1Ref} id="tag1" style={{ top: '40px', left: '-20px', animationDelay: '0s' }}>
+          <FloatingTag ref={tag1Ref} id="tag1" className="left-[-20px] top-10 hidden lg:flex" style={{ animationDelay: '0s' }}>
             <TagDot /> 2+ Years Exp
           </FloatingTag>
-          <FloatingTag ref={tag2Ref} id="tag2" style={{ bottom: '60px', left: '-30px', animationDelay: '0.8s' }}>
+          <FloatingTag ref={tag2Ref} id="tag2" className="bottom-[60px] left-[-30px] hidden lg:flex" style={{ animationDelay: '0.8s' }}>
             <TagDot /> 15+ Projects
           </FloatingTag>
-          <FloatingTag ref={tag3Ref} id="tag3" style={{ top: '80px', right: '-10px', animationDelay: '1.6s' }}>
+          <FloatingTag ref={tag3Ref} id="tag3" className="right-[-10px] top-20 hidden lg:flex" style={{ animationDelay: '1.6s' }}>
             <TagDot /> Jakarta, ID
           </FloatingTag>
         </div>
       </div>
-
-      {/* morphBlob keyframe injected via style tag */}
-      <style>{`
-        @keyframes morphBlob {
-          0%,100% { border-radius:60% 40% 70% 30%/50% 60% 40% 50% }
-          25%      { border-radius:40% 60% 30% 70%/60% 40% 60% 40% }
-          50%      { border-radius:70% 30% 50% 50%/40% 70% 30% 60% }
-          75%      { border-radius:30% 70% 40% 60%/70% 30% 70% 30% }
-        }
-        @keyframes floatTag {
-          0%,100% { transform:translateY(0) }
-          50%     { transform:translateY(-8px) }
-        }
-        
-        /* Hero 3D Scene responsive sizing */
-        #hero-scene { 
-          width: 420px !important; 
-          height: 420px !important; 
-        }
-        
-        #hero-avatar { 
-          width: 340px !important; 
-          height: 340px !important; 
-        }
-        
-        #hero-char { 
-          width: 500px !important; 
-          height: 500px !important; 
-        }
-        
-        #hero-shadow { 
-          width: 200px !important; 
-          height: 24px !important; 
-        }
-        
-        @media (max-width: 1024px) {
-          #hero-scene { 
-            width: 300px !important; 
-            height: 300px !important; 
-          }
-          #hero-avatar { 
-            width: 240px !important; 
-            height: 240px !important; 
-          }
-          #hero-char { 
-            width: 350px !important; 
-            height: 350px !important; 
-          }
-          #tag1, #tag2, #tag3 { 
-            display: none !important; 
-          }
-        }
-        
-        @media (max-width: 768px) {
-          #hero-scene { 
-            width: 240px !important; 
-            height: 240px !important; 
-          }
-          #hero-avatar { 
-            width: 190px !important; 
-            height: 190px !important; 
-          }
-          #hero-char { 
-            width: 280px !important; 
-            height: 280px !important; 
-          }
-        }
-        
-        @media (max-width: 480px) {
-          #hero-scene { 
-            width: 200px !important; 
-            height: 200px !important; 
-          }
-          #hero-avatar { 
-            width: 160px !important; 
-            height: 160px !important; 
-          }
-          #hero-char { 
-            width: 230px !important; 
-            height: 230px !important; 
-          }
-          #hero-shadow { 
-            width: 120px !important; 
-          }
-          .hero-greeting { 
-            font-size: clamp(24px, 7vw, 48px) !important; 
-          }
-          .hero-desc { 
-            font-size: 13px !important; 
-          }
-        }
-      `}</style>
     </section>
   )
 }
 
 /** Reusable floating tag element */
-import { forwardRef } from 'react'
-
-const FloatingTag = forwardRef(({ children, style, id }, ref) => (
+const FloatingTag = forwardRef(({ children, style, id, className = '' }, ref) => (
   <div
     id={id}
     ref={ref}
-    style={{
-      position: 'absolute',
-      background: 'var(--white)',
-      borderRadius: '12px',
-      padding: '10px 16px',
-      boxShadow: 'var(--shadow-lg)',
-      fontSize: '12px', fontWeight: 600,
-      display: 'flex', alignItems: 'center', gap: '8px',
-      animation: 'floatTag 3s ease-in-out infinite',
-      willChange: 'transform',
-      transition: 'transform 0.12s ease-out, box-shadow 0.12s ease',
-      ...style,
-    }}
+    style={style}
+    className={`absolute items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-xs font-semibold shadow-lg [will-change:transform] transition-[transform,box-shadow] duration-[120ms] ease-out animate-floatTag ${className}`}
   >
     {children}
   </div>
@@ -363,7 +158,7 @@ FloatingTag.displayName = 'FloatingTag'
 
 function TagDot() {
   return (
-    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block' }} />
+    <span className="inline-block h-2 w-2 rounded-full bg-green" />
   )
 }
 

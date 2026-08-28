@@ -1,204 +1,136 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 /**
  * ProjectModal
  *
- * Animated overlay modal showing full project details.
- * Closes on overlay click, close button, or Escape key.
+ * Overlay modal showing full project details. Mounted only while a project
+ * is selected (see ProjectsSection). Traps focus while open, restores it to
+ * the trigger on close, and closes on overlay click, close button, or Escape.
  *
- * @param {Object|null} project  - the currently selected project (null = closed)
- * @param {Function}    onClose  - callback to close the modal
+ * @param {Object}   project  - the currently selected project
+ * @param {Function} onClose  - callback to close the modal
  */
 function ProjectModal({ project, onClose }) {
-  // Close on Escape
+  const panelRef = useRef(null)
+
   useEffect(() => {
-    const handler = (e) => { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', handler)
-    return () => document.removeEventListener('keydown', handler)
+    panelRef.current?.focus()
+
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab') return
+
+      const focusable = panelRef.current?.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+      if (!focusable || focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
   }, [onClose])
-
-  // Lock body scroll when open
-  useEffect(() => {
-    document.body.style.overflow = project ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [project])
-
-  const isOpen = !!project
 
   return (
     <div
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
-      style={{
-        position: 'fixed', inset: 0,
-        background: 'rgba(15,23,42,0.6)', zIndex: 500,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        opacity: isOpen ? 1 : 0,
-        pointerEvents: isOpen ? 'all' : 'none',
-        transition: 'opacity .3s',
-        backdropFilter: 'blur(4px)',
-      }}
+      className="fixed inset-0 z-[500] flex items-center justify-center bg-dark/60 backdrop-blur-[4px]"
     >
-      <div style={{
-        background: 'var(--white)', borderRadius: 'var(--radius)',
-        width: 'min(640px,90vw)', maxHeight: '85vh', overflowY: 'auto',
-        padding: '40px', position: 'relative',
-        transform: isOpen ? 'scale(1) translateY(0)' : 'scale(0.9) translateY(20px)',
-        transition: 'transform .3s',
-        boxShadow: '0 32px 80px rgba(0,0,0,0.2)',
-      }} className="project-modal">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        className="relative max-h-[90vh] w-[min(640px,90vw)] overflow-y-auto rounded-xl bg-white p-4 py-6 shadow-[0_32px_80px_rgba(0,0,0,0.2)] outline-none xs:max-h-[85vh] xs:rounded xs:px-6 xs:py-8 md:p-10"
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
-          style={{
-            position: 'absolute', top: '20px', right: '20px',
-            width: '36px', height: '36px', borderRadius: '50%',
-            background: 'var(--gray-lll)', border: 'none', cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '18px', color: 'var(--gray)', transition: 'all .2s',
-          }}
-          className="close-modal-btn"
-          onMouseEnter={e => {
-            e.currentTarget.style.background = 'var(--green)'
-            e.currentTarget.style.color = '#fff'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = 'var(--gray-lll)'
-            e.currentTarget.style.color = 'var(--gray)'
-          }}
+          aria-label="Close project details"
+          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full border-0 bg-gray-lightest text-base text-gray transition-all duration-200 hover:bg-green hover:text-white xs:h-9 xs:w-9 xs:text-lg"
         >
           ✕
         </button>
 
-        {project && (
-          <>
-            {/* Thumbnail */}
-            <div style={{
-              height: '200px',
-              borderRadius: 'var(--radius-sm)',
-              background: project.bg,
-              marginBottom: '24px',
-              overflow: 'hidden', // Penting: agar ujung gambar ikut melengkung sesuai border-radius container
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <img
-                src={project.image}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover', // Membuat gambar memenuhi kotak tanpa merusak proporsi (tidak gepeng)
-                }}
-              />
-            </div>
+        {/* Thumbnail */}
+        <div
+          className="mb-4 flex h-[140px] items-center justify-center overflow-hidden rounded-sm xs:mb-6 xs:h-40 md:h-[200px]"
+          style={{ background: project.bg }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover"
+          />
+        </div>
 
-            {/* Category */}
-            <div style={{
-              fontFamily: 'Fira Code, monospace', fontSize: '10px',
-              letterSpacing: '0.15em', textTransform: 'uppercase',
-              color: 'var(--green)', marginBottom: '8px',
-            }}>
-              {project.category}
-            </div>
+        {/* Category */}
+        <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.15em] text-green">
+          {project.category}
+        </div>
 
-            {/* Title */}
-            <div style={{
-              fontFamily: 'Fraunces, serif', fontSize: '28px', fontWeight: 900,
-              letterSpacing: '-0.02em', marginBottom: '12px',
-            }}>
-              {project.title}
-            </div>
+        {/* Title */}
+        <h3 id="project-modal-title" className="mb-3 font-serif text-[28px] font-black tracking-[-0.02em]">
+          {project.title}
+        </h3>
 
-            {/* Full Description */}
-            <div style={{ fontSize: '14px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '20px' }}>
-              {project.fullDesc}
-            </div>
+        {/* Full Description */}
+        <div className="mb-5 text-sm leading-[1.8] text-gray">
+          {project.fullDesc}
+        </div>
 
-            {/* Tools */}
-            <SectionLabel>Tools & Technologies</SectionLabel>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px', marginBottom: '8px' }}>
-              {project.toolsLabel.map(t => (
-                <span
-                  key={t}
-                  style={{
-                    fontSize: '11px', fontWeight: 600, padding: '5px 12px',
-                    background: 'var(--green-ll)', color: 'var(--green-dd)',
-                    borderRadius: '6px', border: '1px solid rgba(34,197,94,0.25)',
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+        {/* Tools */}
+        <SectionLabel>Tools &amp; Technologies</SectionLabel>
+        <div className="mb-2 flex flex-wrap gap-[7px]">
+          {project.toolsLabel.map(t => (
+            <span
+              key={t}
+              className="rounded-xs border border-green/25 bg-green-lighter px-3 py-[5px] text-[11px] font-semibold text-green-darker"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
 
-            {/* Highlights */}
-            <SectionLabel>Key Highlights</SectionLabel>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {project.highlights.map(h => (
-                <li
-                  key={h}
-                  style={{
-                    fontSize: '13px', color: 'var(--gray)',
-                    paddingLeft: '18px', position: 'relative', lineHeight: 1.6,
-                  }}
-                >
-                  <span style={{
-                    position: 'absolute', left: 0,
-                    color: 'var(--green)', fontWeight: 700,
-                  }}>→</span>
-                  {h}
-                </li>
-              ))}
-            </ul>
+        {/* Highlights */}
+        <SectionLabel>Key Highlights</SectionLabel>
+        <ul className="flex list-none flex-col gap-2">
+          {project.highlights.map(h => (
+            <li
+              key={h}
+              className="relative pl-[18px] text-[13px] leading-[1.6] text-gray"
+            >
+              <span className="absolute left-0 font-bold text-green">→</span>
+              {h}
+            </li>
+          ))}
+        </ul>
 
-            {/* Actions */}
-            <div style={{ display: 'flex', gap: '12px', marginTop: '28px' }}>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <button className="btn-prim" style={{ fontSize: '12px', padding: '11px 22px' }}>
-                  🔗 View Project
-                </button>
-              </a>
-              {/* <button className="btn-outline" style={{ fontSize: '12px', padding: '10px 20px' }}>
-                ⬡ GitHub
-              </button> */}
-            </div>
-          </>
-        )}
-
-        <style>{`
-          @media (max-width: 768px) {
-            .project-modal {
-              padding: 32px 24px !important;
-            }
-            .project-modal > div:nth-child(2) {
-              height: 160px !important;
-            }
-          }
-          
-          @media (max-width: 480px) {
-            .project-modal {
-              padding: 24px 16px !important;
-              width: 90vw !important;
-              max-height: 90vh !important;
-              border-radius: 12px !important;
-            }
-            .project-modal h3 {
-              font-size: 20px !important;
-            }
-            .project-modal p {
-              font-size: 13px !important;
-            }
-            .project-modal > div:nth-child(2) {
-              height: 140px !important;
-              margin-bottom: 16px !important;
-            }
-            .close-modal-btn {
-              width: 32px !important;
-              height: 32px !important;
-              font-size: 16px !important;
-            }
-          }
-        `}</style>
+        {/* Actions */}
+        <div className="mt-7 flex gap-3">
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="no-underline">
+            <button className="inline-flex items-center gap-2 rounded-full border-0 bg-green px-[22px] py-[11px] text-xs font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_8px_24px_rgba(34,197,94,0.35)]">
+              🔗 View Project
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   )
@@ -206,11 +138,7 @@ function ProjectModal({ project, onClose }) {
 
 function SectionLabel({ children }) {
   return (
-    <div style={{
-      fontSize: '11px', fontWeight: 700, textTransform: 'uppercase',
-      letterSpacing: '0.1em', color: 'var(--dark)',
-      marginBottom: '10px', marginTop: '20px',
-    }}>
+    <div className="mb-2.5 mt-5 text-[11px] font-bold uppercase tracking-[0.1em] text-dark">
       {children}
     </div>
   )

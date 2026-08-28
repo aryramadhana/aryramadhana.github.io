@@ -19,55 +19,35 @@ const SKILLS = [
 
 function AboutSection() {
   return (
-    <section id="about" className="section about" style={{ background: 'var(--white)' }}>
-      <div
-        className="about-inner"
-        style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center',
-        }}
-      >
+    <section
+      id="about"
+      className="bg-white px-4 py-12 xs:px-6 xs:py-[60px] md:px-8 md:py-[70px] lg:px-10 lg:py-[90px]"
+    >
+      <div className="grid grid-cols-1 items-center gap-[30px] xs:gap-10 md:gap-[50px] lg:grid-cols-2 lg:gap-20">
         {/* ── Visual / Stats ── */}
-        <div style={{ position: 'relative' }}>
-          <div
-            style={{
-              background: 'var(--green-ll)', borderRadius: 'var(--radius)',
-              padding: '36px', position: 'relative', overflow: 'hidden',
-            }}
-          >
+        <div className="relative">
+          <div className="relative overflow-hidden rounded bg-green-lighter p-9">
             {/* Decorative circle */}
-            <div style={{
-              position: 'absolute', top: '-40px', right: '-40px',
-              width: '160px', height: '160px', borderRadius: '50%',
-              background: 'rgba(34,197,94,0.2)', pointerEvents: 'none',
-            }} />
+            <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-green/20" />
 
-            <p style={{ fontFamily: 'Fira Code, monospace', fontSize: '12px', color: 'var(--green)', marginBottom: '8px' }}>
+            <p className="mb-2 font-mono text-xs text-green">
               // hello world
             </p>
-            <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8 }}>
+            <p className="text-[15px] leading-[1.8] text-gray">
               Turning raw data into reliable, scalable infrastructure — that's what gets me out of bed.
             </p>
 
             {/* Stats Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '20px' }}>
+            <div className="mt-5 grid grid-cols-2 gap-4">
               {STATS.map(({ num, label }) => (
                 <div
                   key={label}
-                  style={{
-                    background: 'var(--white)', borderRadius: 'var(--radius-sm)',
-                    padding: '20px', textAlign: 'center', boxShadow: 'var(--shadow)',
-                  }}
+                  className="rounded-sm bg-white p-5 text-center shadow"
                 >
-                  <div style={{
-                    fontFamily: 'Fraunces, serif', fontSize: '36px', fontWeight: 900,
-                    color: 'var(--green)', lineHeight: 1,
-                  }}>
+                  <div className="font-serif text-4xl font-black leading-none text-green">
                     {num}
                   </div>
-                  <div style={{
-                    fontSize: '11px', fontWeight: 500, color: 'var(--gray)',
-                    marginTop: '4px', letterSpacing: '0.05em',
-                  }}>
+                  <div className="mt-1 text-[11px] font-medium tracking-[0.05em] text-gray">
                     {label}
                   </div>
                 </div>
@@ -78,22 +58,12 @@ function AboutSection() {
 
         {/* ── Text Content ── */}
         <div>
-          <div className="section-eyebrow fade-up">About Me</div>
-          <h2 className="section-title fade-up d1">
-            Building data systems that <em>actually</em> scale.
+          <div className="fade-up mb-2.5 font-mono text-[10px] font-light uppercase tracking-[0.2em] text-green md:text-[11px]">About Me</div>
+          <h2 className="fade-up d1 mb-4 font-serif text-[clamp(20px,5vw,32px)] font-black leading-[1.1] tracking-[-0.03em] xs:text-[clamp(24px,3vw,36px)] md:text-[clamp(32px,4vw,48px)]">
+            Building data systems that <em className="italic text-green">actually</em> scale.
           </h2>
 
-          {/* <p className="about-body fade-up d2" style={{
-            fontSize: '14px', color: 'var(--gray)', lineHeight: 1.9, marginBottom: '24px',
-          }}>
-            I'm a Data Engineer and Analyst based in Jakarta with 5+ years of experience designing
-            end-to-end data solutions. From Kafka pipelines to Tableau dashboards, I bridge the gap
-            between raw infrastructure and business decisions.
-          </p> */}
-
-          <p className="about-body fade-up d3" style={{
-            fontSize: '14px', color: 'var(--gray)', lineHeight: 1.9, marginBottom: '24px',
-          }}>
+          <p className="fade-up d3 mb-6 text-sm leading-[1.9] text-gray">
             I'm a Data Engineer and Analyst based in Jakarta specializing in data cleaning,  transformation,  and analysis.
             Skilled in building interactive dashboards as well as developing automated reporting pipelines.
             Experienced in analyzing e-commerce and marketing data to generate actionable insights and support data-driven decision making.
@@ -101,25 +71,11 @@ function AboutSection() {
           </p>
 
           {/* Skill Chips */}
-          <div className="skill-chips fade-up d4" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px' }}>
+          <div className="fade-up d4 mt-5 flex flex-wrap gap-2.5 md:gap-2">
             {SKILLS.map(skill => (
               <span
                 key={skill}
-                style={{
-                  fontFamily: 'Fira Code, monospace', fontSize: '11px',
-                  padding: '6px 14px',
-                  background: 'var(--green-ll)', color: 'var(--green-dd)',
-                  borderRadius: '50px', border: '1px solid rgba(34,197,94,0.2)',
-                  transition: 'all .2s', cursor: 'default',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'var(--green)'
-                  e.currentTarget.style.color = '#fff'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'var(--green-ll)'
-                  e.currentTarget.style.color = 'var(--green-dd)'
-                }}
+                className="cursor-default rounded-full border border-green/20 bg-green-lighter px-3 py-[5px] font-mono text-[10px] text-green-darker transition-all duration-200 hover:bg-green hover:text-white md:px-3.5 md:py-1.5 md:text-[11px]"
               >
                 {skill}
               </span>
@@ -127,34 +83,6 @@ function AboutSection() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .about-inner {
-            grid-template-columns: 1fr;
-            gap: 50px;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .about-inner {
-            gap: 40px;
-          }
-          .skill-chips {
-            gap: 10px;
-          }
-          .skill-chips span {
-            font-size: 10px;
-            padding: 5px 12px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .about-inner {
-            gap: 30px;
-          }
-        }
-      `}</style>
     </section>
   )
 }

@@ -1,71 +1,17 @@
 /**
  * Footer
  *
- * Dark footer bar with brand, copyright, and social links.
+ * Dark footer bar with brand and copyright.
  */
 function Footer() {
-  const links = [
-    { label: 'GitHub', href: '#' },
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Twitter', href: '#' },
-    { label: 'Medium', href: '#' },
-  ]
-
   return (
-    <footer style={{
-      background: 'var(--dark)',
-      padding: '40px',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: '20px',
-    }} className="footer">
-      {/* Brand */}
-      <div style={{ fontFamily: 'Fraunces, serif', fontSize: '20px', fontWeight: 900, color: '#fff' }}>
-        hary<span style={{ color: 'var(--green)' }}>.</span>
+    <footer className="bg-dark flex flex-col items-center gap-3 px-4 py-6 text-center xs:px-6 xs:py-8 md:flex-row md:justify-between md:gap-5 md:p-10 md:text-left">
+      <div className="font-serif text-xl font-black text-white">
+        hary<span className="text-green">.</span>
       </div>
-
-      {/* Copyright */}
-      <div style={{ fontSize: '12px', color: 'var(--gray-l)' }} className="footer-copy">
+      <div className="text-xs text-gray-light">
         © 2025 — HaryRNasution · Jakarta, ID
       </div>
-
-      {/* Links */}
-      {/* <div style={{ display: 'flex', gap: '20px' }}>
-        {links.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            style={{ fontSize: '12px', color: 'var(--gray-l)', textDecoration: 'none', transition: 'color .2s' }}
-            onMouseEnter={e => e.target.style.color = 'var(--green)'}
-            onMouseLeave={e => e.target.style.color = 'var(--gray-l)'}
-          >
-            {label}
-          </a>
-        ))}
-      </div> */}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .footer {
-            padding: 32px 24px;
-            flex-direction: column;
-            text-align: center;
-            gap: 12px;
-          }
-          .footer-copy {
-            order: 3;
-            width: 100%;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .footer {
-            padding: 24px 16px;
-          }
-        }
-      `}</style>
     </footer>
   )
 }

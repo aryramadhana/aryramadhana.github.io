@@ -1,218 +1,49 @@
-import { useState } from 'react'
-
 /**
  * ContactSection
  *
- * Two-column layout: contact info on the left, contact form on the right.
- * Includes basic form state management.
+ * Single-column contact info block (the contact form has been removed —
+ * this section is intentionally info-only for now).
  */
 function ContactSection() {
-  const [form, setForm] = useState({
-    firstName: '', lastName: '', email: '', phone: '', message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // TODO: Wire up to your email service or API
-    console.log('Form submitted:', form)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-  }
-
   return (
     <section
       id="contact"
-      className="section contact"
-      style={{ background: 'linear-gradient(135deg,var(--green-ll) 0%,var(--white) 100%)' }}
+      className="bg-[linear-gradient(135deg,#F0FDF4_0%,#FFFFFF_100%)] px-4 py-12 xs:px-6 xs:py-[60px] md:px-8 md:py-[70px] lg:px-10 lg:py-[90px]"
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }} className="contact-grid">
+      <div className="mx-auto max-w-[560px] text-center">
+        <div className="fade-up mb-2.5 font-mono text-[10px] font-light uppercase tracking-[0.2em] text-green md:text-[11px]">Get In Touch</div>
+        <h2 className="fade-up d1 mb-4 font-serif text-[clamp(20px,5vw,32px)] font-black leading-[1.1] tracking-[-0.03em] xs:text-[clamp(24px,3vw,36px)] md:text-[clamp(32px,4vw,48px)]">
+          Let's <em className="italic text-green">build</em> something great together.
+        </h2>
+        <p className="fade-up d2 mb-2 text-sm leading-[1.8] text-gray">
+          Open to full-time roles, freelance projects, and consulting engagements.
+          Based in Jakarta — available remotely worldwide.
+        </p>
 
-        {/* ── Left: Info ── */}
-        <div>
-          <div className="section-eyebrow fade-up">Get In Touch</div>
-          <h2 className="section-title fade-up d1">
-            Let's <em>build</em> something great together.
-          </h2>
-          <p className="fade-up d2" style={{
-            fontSize: '14px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '8px',
-          }}>
-            Open to full-time roles, freelance projects, and consulting engagements.
-            Based in Jakarta — available remotely worldwide.
-          </p>
-
-          <div className="contact-info fade-up d3" style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '28px' }}>
-            {[
-              { icon: '📧', label: 'Email', value: 'haryrnasution@gmail.com' },
-              { icon: '📍', label: 'Location', value: 'Jakarta, Indonesia' },
-              { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/hary-ramadhana-n' },
-            ].map(({ icon, label, value }) => (
-              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                <div style={{
-                  width: '44px', height: '44px', borderRadius: '12px',
-                  background: 'var(--green-ll)', display: 'flex',
-                  alignItems: 'center', justifyContent: 'center',
-                  fontSize: '18px', flexShrink: 0,
-                }}>
-                  {icon}
+        <div className="fade-up d3 mt-7 flex flex-col items-center gap-5">
+          {[
+            { icon: '📧', label: 'Email', value: 'haryrnasution@gmail.com' },
+            { icon: '📍', label: 'Location', value: 'Jakarta, Indonesia' },
+            { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/hary-ramadhana-n' },
+          ].map(({ icon, label, value }) => (
+            <div key={label} className="flex items-center gap-3.5">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-green-lighter text-lg">
+                {icon}
+              </div>
+              <div className="text-left">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-light">
+                  {label}
                 </div>
-                <div>
-                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gray-l)' }}>
-                    {label}
-                  </div>
-                  <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--dark)' }}>
-                    {value}
-                  </div>
+                <div className="text-sm font-semibold text-dark">
+                  {value}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-
-        {/* ── Right: Form ── */}
-        {/* <div className="fade-up d2" style={{
-          background: 'var(--white)', borderRadius: 'var(--radius)',
-          padding: '40px', boxShadow: 'var(--shadow-lg)',
-        }}>
-          <form onSubmit={handleSubmit}> */}
-        {/* Name Row */}
-        {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
-              <FormGroup label="First Name">
-                <input
-                  className="form-inp"
-                  name="firstName"
-                  placeholder="Reza"
-                  value={form.firstName}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
-                  onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
-                /> */}
-        {/* </FormGroup> */}
-        {/* <FormGroup label="Last Name">
-                <input
-                  name="lastName"
-                  placeholder="Pratama"
-                  value={form.lastName}
-                  onChange={handleChange}
-                  style={inputStyle}
-                  onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
-                  onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
-                />
-              </FormGroup>
-            </div> */}
-
-        {/* <FormGroup label="Email Address" style={{ marginBottom: '16px' }}>
-              <input
-                type="email" name="email"
-                placeholder="you@email.com"
-                value={form.email}
-                onChange={handleChange}
-                style={inputStyle}
-                onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
-                onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
-              />
-            </FormGroup> */}
-
-        {/* <FormGroup label="Phone Number" style={{ marginBottom: '16px' }}>
-              <input
-                type="tel" name="phone"
-                placeholder="+62 812 ..."
-                value={form.phone}
-                onChange={handleChange}
-                style={inputStyle}
-                onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
-                onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
-              />
-            </FormGroup>
-
-            <FormGroup label="Your Message" style={{ marginBottom: '16px' }}>
-              <textarea
-                name="message"
-                placeholder="Tell me about your project..."
-                value={form.message}
-                onChange={handleChange}
-                style={{ ...inputStyle, height: '110px', resize: 'none' }}
-                onFocus={e => { e.target.style.borderColor = 'var(--green)'; e.target.style.background = 'var(--white)' }}
-                onBlur={e =>  { e.target.style.borderColor = 'var(--gray-ll)'; e.target.style.background = 'var(--gray-lll)' }}
-              />
-            </FormGroup> */}
-
-        {/* <button
-              type="submit"
-              style={{
-                width: '100%', fontSize: '13px', fontWeight: 700, color: '#fff',
-                background: submitted ? 'var(--green-d)' : 'var(--green)',
-                border: 'none', padding: '14px',
-                borderRadius: 'var(--radius-sm)', cursor: 'pointer',
-                transition: 'all .25s', marginTop: '4px',
-              }}
-            >
-              {submitted ? '✓ Message Sent!' : 'Send Message ✦'} */}
-        {/* </button> */}
-        {/* </form>
-        </div> */}
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 50px;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .contact-grid {
-            gap: 40px;
-          }
-          .contact-info {
-            gap: 16px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .contact-grid {
-            gap: 30px;
-          }
-          .contact-info > div {
-            flex-direction: column;
-            gap: 10px;
-          }
-        }
-      `}</style>
     </section>
   )
-}
-
-/* ── Sub-components ─────────────────────────── */
-
-function FormGroup({ label, children, style }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', ...style }}>
-      <label style={{
-        fontSize: '11px', fontWeight: 600, letterSpacing: '0.06em',
-        textTransform: 'uppercase', color: 'var(--gray)',
-      }}>
-        {label}
-      </label>
-      {children}
-    </div>
-  )
-}
-
-const inputStyle = {
-  fontFamily: "'Plus Jakarta Sans', sans-serif",
-  fontSize: '13px', padding: '12px 16px',
-  border: '1.5px solid var(--gray-ll)',
-  borderRadius: 'var(--radius-sm)',
-  outline: 'none', width: '100%',
-  background: 'var(--gray-lll)', color: 'var(--dark)',
-  transition: 'border-color .2s, background .2s',
 }
 
 export default ContactSection
