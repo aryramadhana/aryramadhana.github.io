@@ -26,7 +26,7 @@ function AboutSection() {
       <div className="grid grid-cols-1 items-center gap-[30px] xs:gap-10 md:gap-[50px] lg:grid-cols-2 lg:gap-20">
         {/* ── Visual / Stats ── */}
         <div className="relative">
-          <div className="relative overflow-hidden rounded bg-green-lighter p-9">
+          <div className="relative overflow-hidden rounded bg-green-lighter p-6 xs:p-7 md:p-8 lg:p-9">
             {/* Decorative circle */}
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-green/20" />
 
@@ -34,7 +34,7 @@ function AboutSection() {
               // hello world
             </p>
             <p className="text-[15px] leading-[1.8] text-gray">
-              Turning raw data into reliable, scalable infrastructure — that's what gets me out of bed.
+              Turning raw data into reliable, scalable infrastructure. That's what gets me out of bed.
             </p>
 
             {/* Stats Grid */}
@@ -64,10 +64,9 @@ function AboutSection() {
           </h2>
 
           <p className="fade-up d3 mb-6 text-sm leading-[1.9] text-gray">
-            I'm a Data Engineer and Analyst based in Jakarta specializing in data cleaning,  transformation,  and analysis.
-            Skilled in building interactive dashboards as well as developing automated reporting pipelines.
-            Experienced in analyzing e-commerce and marketing data to generate actionable insights and support data-driven decision making.
-            Additionally, experienced as a mentor in data analytics or AI programs, guiding learners in understanding analytical concepts and practical tools.
+            I'm a Data Engineer and Analyst based in Jakarta. I clean, transform, and analyze data, build interactive dashboards, and automate reporting pipelines.
+            Most of my work has been on e-commerce and marketing data, turning it into decisions the business can act on.
+            I also mentor in data analytics and AI programs, helping learners go from concept to working with real tools.
           </p>
 
           {/* Skill Chips */}

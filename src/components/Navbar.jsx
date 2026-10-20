@@ -60,7 +60,7 @@ function Navbar() {
           aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileOpen}
           aria-controls="mobile-menu"
-          className="border-0 bg-transparent text-2xl text-dark md:hidden"
+          className="flex h-11 w-11 items-center justify-center border-0 bg-transparent text-2xl text-dark md:hidden"
         >
           {isMobileOpen ? '✕' : '☰'}
         </button>

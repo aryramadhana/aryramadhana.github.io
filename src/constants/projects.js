@@ -13,9 +13,9 @@ export const PROJECTS = [
     bg: '#FEE2E2',
     tools: ['python', 'pyspark'],
     toolsLabel: ['Python', 'Pyspark'],
-    desc: 'I will develop and implement robust modular ETL (Extract, Transform, Load) concepts using PySpark.',
+    desc: 'Built a modular ETL (Extract, Transform, Load) pipeline using PySpark.',
     fullDesc:
-      'This project implements a robust ETL pipeline using PySpark, designed for large transaction datasets. It efficiently cleanses and transforms data, storing it in parquet format for analytics.',
+      'An ETL pipeline built with PySpark for large transaction datasets. It cleans and transforms the data, then stores it in Parquet format for analytics.',
     highlights: [
       '2,000,000 rows of transactions',
       '10,000 rows of customers',
@@ -26,7 +26,7 @@ export const PROJECTS = [
   },
   {
     id: 7,
-    title: 'Modern Data Stack — E-Commerce Data Pipeline',
+    title: 'Modern Data Stack: E-Commerce Data Pipeline',
     category: 'pipeline',
     image: '/foto/pipeline2.png',
     bg: '#FEE2E2',
@@ -53,7 +53,7 @@ export const PROJECTS = [
     toolsLabel: ['Python'],
     desc: 'This project performs a rigorous statistical validation of The Key’s course placement system. By analyzing data from 150 students across three proficiency levels (Advanced, Intermediate, and Foundation).',
     fullDesc:
-      'we aim to prove the scientific link between a students natural aptitude and their eventual academic success.The primary objective is to ensure that students are placed in learning environments that match their capabilities, thereby optimizing the quality of the English language programs.',
+      'The analysis links each student\'s placement-test performance to their eventual academic outcomes, checking whether the three proficiency levels actually predict success. Goal: place students in classes that match their ability and improve the program\'s placement accuracy.',
     highlights: [
       'Analytical Thinking',
       'Prediction',
@@ -126,9 +126,9 @@ export const PROJECTS = [
     bg: '#DCFCE7',
     tools: ['python', 'tableau', 'excel'],
     toolsLabel: ['Python', 'Tableau', 'Excel'],
-    desc: 'Conduct a thorough analysis of customer churn at a bank, taking an end-to-end approach to uncover insights and develop effective strategies.',
+    desc: 'Analyzed customer churn at a bank end-to-end, from raw data to a clustering model and retention recommendations.',
     fullDesc:
-      'In this project, we will accurately identify the number of customer churns, develop distinct clusters, and confidently recommend targeted improvements for each cluster.',
+      'Identified churned customers, grouped them into distinct clusters, and recommended targeted retention improvements for each cluster.',
     highlights: [
       'Analytical Thinking',
       'Clustering',

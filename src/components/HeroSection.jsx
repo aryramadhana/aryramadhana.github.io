@@ -41,8 +41,8 @@ function HeroSection() {
       className="relative grid grid-cols-1 items-center gap-6 overflow-hidden bg-[linear-gradient(135deg,#F0FDF4_0%,#FFFFFF_60%)] px-4 pb-10 pt-[60px] xs:gap-[30px] xs:px-6 xs:pb-[50px] xs:pt-[70px] md:min-h-screen md:gap-10 md:px-8 md:pb-[60px] md:pt-20 lg:grid-cols-2 lg:gap-[60px] lg:px-10 lg:pb-[60px] lg:pt-[100px]"
     >
       {/* Decorative blobs */}
-      <div className="pointer-events-none absolute -right-[120px] -top-[120px] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.15)_0%,transparent_70%)]" />
-      <div className="pointer-events-none absolute -bottom-20 left-[10%] h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-[220px] w-[220px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.15)_0%,transparent_70%)] xs:-right-16 xs:-top-16 xs:h-[300px] xs:w-[300px] md:-right-20 md:-top-20 md:h-[380px] md:w-[380px] lg:-right-[120px] lg:-top-[120px] lg:h-[500px] lg:w-[500px]" />
+      <div className="pointer-events-none absolute -bottom-8 left-[10%] h-[140px] w-[140px] rounded-full bg-[radial-gradient(circle,rgba(34,197,94,0.08)_0%,transparent_70%)] xs:-bottom-12 xs:h-[190px] xs:w-[190px] md:-bottom-16 md:h-[240px] md:w-[240px] lg:-bottom-20 lg:h-[300px] lg:w-[300px]" />
 
       {/* ── Left Column ── */}
       <div className="min-w-0">
@@ -55,7 +55,7 @@ function HeroSection() {
               title={title}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-sm border border-gray-lighter bg-white text-lg text-dark no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-green hover:text-green"
+              className="flex h-11 w-11 items-center justify-center rounded-sm border border-gray-lighter bg-white text-lg text-dark no-underline transition-all duration-200 hover:-translate-y-0.5 hover:border-green hover:text-green md:h-9 md:w-9"
             >
               {icon}
             </a>

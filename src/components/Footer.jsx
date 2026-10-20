@@ -10,7 +10,7 @@ function Footer() {
         hary<span className="text-green">.</span>
       </div>
       <div className="text-xs text-gray-light">
-        © 2025 — HaryRNasution · Jakarta, ID
+        © 2025 HaryRNasution · Jakarta, ID
       </div>
     </footer>
   )

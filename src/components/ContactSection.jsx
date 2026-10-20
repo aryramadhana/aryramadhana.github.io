@@ -17,10 +17,10 @@ function ContactSection() {
         </h2>
         <p className="fade-up d2 mb-2 text-sm leading-[1.8] text-gray">
           Open to full-time roles, freelance projects, and consulting engagements.
-          Based in Jakarta — available remotely worldwide.
+          Based in Jakarta. Available remotely worldwide.
         </p>
 
-        <div className="fade-up d3 mt-7 flex flex-col items-center gap-5">
+        <div className="fade-up d3 mt-7 flex flex-col items-start gap-5">
           {[
             { icon: '📧', label: 'Email', value: 'haryrnasution@gmail.com' },
             { icon: '📍', label: 'Location', value: 'Jakarta, Indonesia' },

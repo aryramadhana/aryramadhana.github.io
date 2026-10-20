@@ -64,7 +64,7 @@ function ProjectModal({ project, onClose }) {
         <button
           onClick={onClose}
           aria-label="Close project details"
-          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-full border-0 bg-gray-lightest text-base text-gray transition-all duration-200 hover:bg-green hover:text-white xs:h-9 xs:w-9 xs:text-lg"
+          className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border-0 bg-white/90 text-lg text-dark shadow-md transition-all duration-200 hover:bg-green hover:text-white"
         >
           ✕
         </button>

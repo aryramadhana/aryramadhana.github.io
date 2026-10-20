@@ -126,7 +126,7 @@ function FilterBtn({ active, onClick, children }) {
     <button
       onClick={onClick}
       aria-pressed={active}
-      className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-[7px] text-xs font-medium transition-all duration-200 ${
+      className={`whitespace-nowrap rounded-full border-[1.5px] px-4 py-2.5 text-xs font-medium transition-all duration-200 md:py-[7px] ${
         active
           ? 'border-green bg-green text-white'
           : 'border-gray-lighter bg-white text-gray'
